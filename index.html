@@ -18,6 +18,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         html[lang="ar"] {
@@ -30,13 +31,13 @@
 
         /* Light Mode */
         body.light-mode {
-            background-color: #F5E6CC;
+            background: linear-gradient(135deg, #F5E6CC 0%, #FFF8E7 100%);
             color: #4A3728;
         }
 
         body.light-mode .header, body.light-mode footer, body.light-mode .content-section, body.light-mode .sidebar {
             background-color: #FFF8E7;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         body.light-mode .dropdown-content {
@@ -56,12 +57,12 @@
         }
 
         body.light-mode .cta-btn, body.light-mode .back-btn {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #E8C872);
             color: #4A3728;
         }
 
         body.light-mode .header-title-circle {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #E8C872);
         }
 
         body.light-mode .header-title {
@@ -73,19 +74,19 @@
         }
 
         body.light-mode .sidebar a:hover {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #E8C872);
             color: #4A3728;
         }
 
         /* Dark Mode */
         body.dark-mode {
-            background-color: #1A2526;
+            background: linear-gradient(135deg, #1A2526 0%, #2F3B3C 100%);
             color: #F5F5DC;
         }
 
         body.dark-mode .header, body.dark-mode footer, body.dark-mode .content-section, body.dark-mode .sidebar {
             background-color: #2F3B3C;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         body.dark-mode .dropdown-content {
@@ -105,12 +106,12 @@
         }
 
         body.dark-mode .cta-btn, body.dark-mode .back-btn {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
             color: #1A2526;
         }
 
         body.dark-mode .header-title-circle {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
         }
 
         body.dark-mode .header-title {
@@ -122,7 +123,7 @@
         }
 
         body.dark-mode .sidebar a:hover {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
             color: #1A2526;
         }
 
@@ -134,8 +135,14 @@
             padding: 15px 30px;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 1000;
             width: 100%;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .header-logo {
@@ -152,9 +159,13 @@
             justify-content: center;
             align-items: center;
             animation: float 4s ease-in-out infinite;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            transition: transform 0.3s ease;
             overflow: hidden;
+        }
+
+        .header-title-circle:hover {
+            transform: scale(1.1);
         }
 
         .header-title-circle img {
@@ -166,14 +177,15 @@
 
         .header-title {
             transition: all 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 5px 15px;
+            border-radius: 8px;
             font-size: 1.5rem;
+            animation: fadeIn 1s ease-out;
         }
 
         .header-title:hover {
-            box-shadow: 0 0 15px rgba(232, 200, 114, 0.7);
-            background-color: rgba(232, 200, 114, 0.1);
+            box-shadow: 0 0 20px rgba(232, 200, 114, 0.7);
+            background-color: rgba(232, 200, 114, 0.2);
         }
 
         .egypt-flag {
@@ -185,8 +197,13 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
-            50% { transform: translateY(-10px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+            50% { transform: translateY(-10px); box-shadow: 0 0 30px rgba(255, 215, 0, 0.9); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Settings Dropdown */
@@ -199,6 +216,11 @@
             font-size: 2rem;
             padding: 10px;
             display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .settings:hover {
+            transform: rotate(90deg);
         }
 
         .dropdown {
@@ -210,11 +232,17 @@
             display: none;
             position: absolute;
             min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             z-index: 100;
             border-radius: 5px;
             top: 100%;
             margin-top: 5px;
+            animation: dropDown 0.3s ease-out;
+        }
+
+        @keyframes dropDown {
+            from { transform: 0 0; }
+            to { transform: 0 10px; }
         }
 
         html[lang="ar"] .dropdown-content {
@@ -244,12 +272,12 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #E8C872);
             color: #4A3728;
         }
 
         .dark-mode .dropdown-content a:hover {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
             color: #1A2526;
         }
 
@@ -269,11 +297,23 @@
             overflow-y: auto;
             z-index: 5;
             transition: transform 0.3s ease;
+            animation: slideInRight 0.5s ease-out;
         }
 
         html[lang="en"] .sidebar {
             right: auto;
             left: 0;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
 
         .sidebar a {
@@ -282,17 +322,18 @@
             margin-bottom: 10px;
             text-decoration: none;
             font-size: 1.2rem;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
         }
 
         .sidebar a.active {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #E8C872);
             color: #4A3728;
         }
 
         .dark-mode .sidebar a.active {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
             color: #1A2526;
         }
 
@@ -318,10 +359,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeIn 1s ease-out;
         }
 
         .welcome-section h1 {
             font-size: 3rem;
+            animation: zoomIn 0.8s ease-out;
         }
 
         .welcome-section p {
@@ -329,6 +372,12 @@
             margin-bottom: 20px;
             margin-top: 10px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .button-container {
@@ -341,16 +390,17 @@
         .cta-btn, .back-btn {
             padding: 12px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
         }
 
         .cta-btn:hover, .back-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
         }
 
         .modern-light {
@@ -375,13 +425,41 @@
         .content-section {
             margin: 20px 0;
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 12px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .content-section h2 {
             font-size: 2.2rem;
             margin-bottom: 15px;
             color: #E8C872;
+            position: relative;
+            display: inline-block;
+        }
+
+        .content-section h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: #E8C872;
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            transition: width 0.3s ease;
+        }
+
+        html[lang="en"] .content-section h2::after {
+            left: 0;
+            right: auto;
+        }
+
+        .content-section h2:hover::after {
+            width: 100px;
         }
 
         .content-section h3 {
@@ -389,12 +467,14 @@
             margin-bottom: 10px;
             margin-top: 20px;
             color: #E8C872;
+            animation: fadeIn 1s ease-out;
         }
 
         .content-section p {
             font-size: 1.2rem;
             line-height: 1.7;
             margin-bottom: 15px;
+            animation: fadeIn 1.2s ease-out;
         }
 
         /* Table Styles */
@@ -404,11 +484,13 @@
             margin: 20px 0;
             border-radius: 8px;
             overflow: hidden;
+            animation: fadeIn 1.5s ease-out;
         }
 
         .regulations-table th, .regulations-table td {
-            padding: 12px;
+            padding: 15px;
             text-align: right;
+            transition: background-color 0.3s ease;
         }
 
         html[lang="en"] .regulations-table th, 
@@ -417,7 +499,7 @@
         }
 
         .regulations-table th {
-            background-color: #E8C872;
+            background: linear-gradient(45deg, #E8C872, #FFD700);
             color: #1A2526;
             font-weight: bold;
         }
@@ -427,13 +509,14 @@
         }
 
         .regulations-table tr:hover {
-            background-color: rgba(232, 200, 114, 0.2);
+            background-color: rgba(232, 200, 114, 0.3);
         }
 
         /* List Styles */
         .regulations-list {
             margin-bottom: 15px;
             padding-right: 20px;
+            list-style: none;
         }
 
         html[lang="en"] .regulations-list {
@@ -442,9 +525,26 @@
         }
 
         .regulations-list li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 1.1rem;
             line-height: 1.6;
+            position: relative;
+            padding-right: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        html[lang="ar"] .regulations-list li::before {
+            content: '✔️';
+            position: absolute;
+            right: -20px;
+            color: #E8C872;
+        }
+
+        html[lang="en"] .regulations-list li::before {
+            content: '✔️';
+            position: absolute;
+            left: -20px;
+            color: #E8C872;
         }
 
         /* Footer */
@@ -454,6 +554,7 @@
             width: 100%;
             font-size: 1.1rem;
             margin-top: auto;
+            animation: fadeIn 2s ease-out;
         }
 
         /* Mobile Sidebar Toggle */
@@ -462,6 +563,11 @@
             font-size: 1.8rem;
             cursor: pointer;
             padding: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            transform: scale(1.2);
         }
 
         /* Responsiveness */
@@ -532,7 +638,7 @@
             }
 
             .regulations-table th, .regulations-table td {
-                padding: 8px;
+                padding: 10px;
             }
         }
 
@@ -596,8 +702,9 @@
 
     <!-- Sidebar -->
     <nav class="sidebar">
-        <a href="#introduction" class="ar-content">💡 مقدمة</a>
-        <a href="#introduction" class="en-content">💡 Introduction</a>
+        <!-- General Regulations -->
+        <a href="#general-introduction" class="ar-content">📘 مقدمة اللائحة العامة</a>
+        <a href="#general-introduction" class="en-content">📘 General Regulations Introduction</a>
         <a href="#organizational-structure" class="ar-content">🏛️ الهيكل الإداري</a>
         <a href="#organizational-structure" class="en-content">🏛️ Organizational Structure</a>
         <a href="#detailed-tasks" class="ar-content">🎯 المهام التفصيلية</a>
@@ -608,8 +715,27 @@
         <a href="#reports" class="en-content">📝 Reports and Follow-up</a>
         <a href="#penalties" class="ar-content">🚨 العقوبات والجزاءات</a>
         <a href="#penalties" class="en-content">🚨 Penalties and Sanctions</a>
-        <a href="#conclusion" class="ar-content">🏁 ختامًا</a>
-        <a href="#conclusion" class="en-content">🏁 Conclusion</a>
+        <a href="#general-conclusion" class="ar-content">🏁 ختام اللائحة العامة</a>
+        <a href="#general-conclusion" class="en-content">🏁 General Regulations Conclusion</a>
+        <!-- Volunteers Regulations -->
+        <a href="#volunteers-introduction" class="ar-content">📗 مقدمة لائحة المتطوعين</a>
+        <a href="#volunteers-introduction" class="en-content">📗 Volunteers Regulations Introduction</a>
+        <a href="#volunteer-definition" class="ar-content">👥 من هو المتطوع؟</a>
+        <a href="#volunteer-definition" class="en-content">👥 Who is the Volunteer?</a>
+        <a href="#volunteer-rights" class="ar-content">✅ حقوق المتطوع</a>
+        <a href="#volunteer-rights" class="en-content">✅ Volunteer Rights</a>
+        <a href="#volunteer-duties" class="ar-content">📌 واجبات المتطوع</a>
+        <a href="#volunteer-duties" class="en-content">📌 Volunteer Duties</a>
+        <a href="#behavioral-regulations" class="ar-content">🔐 ضوابط سلوكية</a>
+        <a href="#behavioral-regulations" class="en-content">🔐 Behavioral Regulations</a>
+        <a href="#time-discipline" class="ar-content">⏱️ الانضباط الزمني</a>
+        <a href="#time-discipline" class="en-content">⏱️ Time Discipline</a>
+        <a href="#team-etiquette" class="ar-content">🧭 آداب التعامل</a>
+        <a href="#team-etiquette" class="en-content">🧭 Team Etiquette</a>
+        <a href="#volunteer-evaluation" class="ar-content">🎯 تقييم المتطوعين</a>
+        <a href="#volunteer-evaluation" class="en-content">🎯 Volunteer Evaluation</a>
+        <a href="#volunteers-conclusion" class="ar-content">🏁 ختام لائحة المتطوعين</a>
+        <a href="#volunteers-conclusion" class="en-content">🏁 Volunteers Regulations Conclusion</a>
     </nav>
 
     <!-- Main Content -->
@@ -617,8 +743,8 @@
         <!-- Welcome Section -->
         <section class="welcome-section">
             <div class="modern-light"></div>
-            <h1 class="ar-content">اللائحة العامة لإدارة مبادرة "اعرف بلدك"</h1>
-            <h1 class="en-content">General Regulations for Managing the "Know Your Country" Initiative</h1>
+            <h1 class="ar-content">لوائح مبادرة "اعرف بلدك"</h1>
+            <h1 class="en-content">Regulations of "Know Your Country" Initiative</h1>
             <p class="ar-content">إصدار رسمي – فريق "رؤية وطن" – مدرسة الشهيد مدحت طلعت الرسمية للغات – بنها</p>
             <p class="en-content">Official Release – "National Vision" Team – Martyr Medhat Talaat Official Language School – Banha</p>
             <div class="button-container">
@@ -626,10 +752,10 @@
             </div>
         </section>
 
-        <!-- Introduction -->
-        <section id="introduction" class="content-section">
-            <h2 class="ar-content">💡 مقدمة</h2>
-            <h2 class="en-content">💡 Introduction</h2>
+        <!-- General Regulations -->
+        <section id="general-introduction" class="content-section">
+            <h2 class="ar-content">📘 مقدمة اللائحة العامة</h2>
+            <h2 class="en-content">📘 General Regulations Introduction</h2>
             <p class="ar-content">في إطار إطلاق مبادرة "اعرف بلدك" لأول مرة على مستوى المدارس الثانوية، وإيمانًا منّا بأهمية تعزيز الوعي الوطني، وتنمية روح الانتماء، والتعريف بالدستور والعلاقات الدولية والجغرافيا والتاريخ المصري، فإن هذه المبادرة تُدار بشكل احترافي يُراعي أعلى درجات التنظيم والالتزام.</p>
             <p class="en-content">Within the framework of launching the "Know Your Country" initiative for the first time at the secondary school level, and with our belief in the importance of enhancing national awareness, fostering a sense of belonging, and introducing the constitution, international relations, geography, and Egyptian history, this initiative is managed professionally with the highest standards of organization and commitment.</p>
             <p class="ar-content">وتنظيمًا للعمل بين الأفراد والقيادات، تم إعداد هذا الدليل الإداري ليكون مرجعًا لكل من يعمل ضمن هيكل المبادرة، بهدف:</p>
@@ -648,7 +774,6 @@
             </ul>
         </section>
 
-        <!-- Organizational Structure -->
         <section id="organizational-structure" class="content-section">
             <h2 class="ar-content">🏛️ الهيكل الإداري والتنظيمي</h2>
             <h2 class="en-content">🏛️ Organizational Structure</h2>
@@ -718,7 +843,6 @@
             <p class="en-content">📍 It is strictly prohibited to bypass levels, and each rank must be respected according to its order.</p>
         </section>
 
-        <!-- Detailed Tasks -->
         <section id="detailed-tasks" class="content-section">
             <h2 class="ar-content">🎯 المهام التفصيلية</h2>
             <h2 class="en-content">🎯 Detailed Tasks</h2>
@@ -764,7 +888,7 @@
                 <li>Monitoring section supervisors and ensuring the readiness of each section.</li>
                 <li>Organizing preliminary training sessions.</li>
                 <li>Responsible for any incidents within any section.</li>
-                <li>Direct communication with the General Coordinator only.</li>
+                <li>Direct communication only with the General Coordinator only.</li>
             </ul>
 
             <h3 class="ar-content">🟪 مشرف الركن</h3>
@@ -786,12 +910,12 @@
             <h3 class="en-content">⚙️ Technical Support Team</h3>
             <ul class="regulations-list ar-content">
                 <li>التأكد من توصيل أجهزة العرض – الصوت – الإضاءة.</li>
-                <li>طباعة الأوراق، اللافتات، كروت التعريف.</li>
-                <li>تجهيز المكان لوجستيًا بالتنسيق مع الإدارة المدرسية.</li>
+                <li>طباعة الأورراق، اللافتات، كروت التعرف.</li>
+                <li>تجهيز المكان لوجستيًا بالتنسيق مع الإداة المدرسية.</li>
             </ul>
             <ul class="regulations-list en-content">
                 <li>Ensuring the setup of display devices, sound, and lighting.</li>
-                <li>Printing papers, banners, and identification cards.</li>
+                <li>Printing papers, banners, banners and identification cards.</li>
                 <li>Preparing the venue logistically in coordination with school administration.</li>
             </ul>
 
@@ -805,22 +929,21 @@
             </ul>
             <ul class="regulations-list en-content">
                 <li>Official photography during the initiative.</li>
-                <li>Preparing published content for the initiative (videos, photos, coverage).</li>
+                <li>Preparing published content for the initiative (videos, videos, photos, coverage).</li>
                 <li>Visually archiving the event for use in future initiatives.</li>
                 <li>Publishing any content is prohibited without review by the Leader or Coordinator.</li>
             </ul>
         </section>
 
-        <!-- Administrative Regulations -->
         <section id="administrative-regulations" class="content-section">
             <h2 class="ar-content">🔐 القوانين والضوابط الإدارية</h2>
             <h2 class="en-content">🔐 Administrative Regulations</h2>
             <h3 class="ar-content">🧭 أولًا: احترام التسلسل الوظيفي</h3>
-            <h3 class="en-content">🧭 First: Respecting the Functional Hierarchy</h3>
+            <h3 class="en-content">🧭 First: Respecting the Hierarchy</h3>
             <ul class="regulations-list ar-content">
                 <li>التواصل يتم من أسفل لأعلى فقط.</li>
-                <li>لا يُسمح لأي فرد بتخطي من فوقه مباشرة دون سبب واضح وموافقة مسبقة.</li>
-                <li>لا يُسمح باتخاذ قرارات فردية تؤثر على مجريات الحدث.</li>
+                <li>لا يُسمح لأي فرد بتخطي من فوقه مباشرة دون دون سبب واضح وموافقة.</li>
+                <li>لا يُسمح باتخاذ قرارات إفرادية تؤثر على مجريات الحدث.</li>
             </ul>
             <ul class="regulations-list en-content">
                 <li>Communication must flow from bottom to top only.</li>
@@ -830,9 +953,9 @@
 
             <h3 class="ar-content">⏱️ ثانيًا: الانضباط الزمني</h3>
             <h3 class="en-content">⏱️ Second: Time Discipline</h3>
-            <ul class="regulations-list ar-content">
+            <ul class="regulations-list ar-content>
                 <li>التزام تام بمواعيد الاجتماعات – الورش – يوم التنفيذ.</li>
-                <li>التأخر 15 دقيقة بدون عذر = إنذار شفهي.</li>
+                <li>التأخر: ١٥ دقيقة بدون عذر = إنذار شفهي.</li>
                 <li>التأخر المتكرر = استبعاد من المهمة الحالية.</li>
             </ul>
             <ul class="regulations-list en-content">
@@ -844,18 +967,17 @@
             <h3 class="ar-content">🎤 ثالثًا: طريقة التواصل</h3>
             <h3 class="en-content">🎤 Third: Communication Etiquette</h3>
             <ul class="regulations-list ar-content">
-                <li>يُمنع استخدام أي لغة غير رسمية أو أسلوب تهكمي.</li>
-                <li>التعامل داخل الفريق يتم بمبدأ "كلنا على نفس المركب".</li>
-                <li>أي شكوى أو اعتراض تُقدم كتابيًا لمنسق المبادرة.</li>
+                <li>يُمنع استخدام أي لغة غير رسمية.</li>
+                <li>التعامل داخل الفريق يتم بمبدأ "كلنا على نفس المركب."</li>
+                <li>أي شكوى أو اعتراض تُقدم كتابيًا لمنسق.</li>
             </ul>
             <ul class="regulations-list en-content">
-                <li>Use of informal language or sarcastic tone is prohibited.</li>
+                <li>Use of informal language or sarcasm is prohibited.</li>
                 <li>Team interactions follow the principle of "we’re all in the same boat."</li>
                 <li>Any complaints or objections must be submitted in writing to the General Coordinator.</li>
             </ul>
         </section>
 
-        <!-- Reports and Follow-up -->
         <section id="reports" class="content-section">
             <h2 class="ar-content">📝 التقارير والمتابعة</h2>
             <h2 class="en-content">📝 Reports and Follow-up</h2>
@@ -890,35 +1012,34 @@
                 <tr>
                     <th>Reporting Entity</th>
                     <th>Submitted To</th>
-                    <th>Report Content</th>
+                    <th>thReport Content</th>
                 </tr>
                 <tr>
                     <td>Section Supervisor</td>
-                    <td>Head of Section Supervisors</td>
-                    <td>Section content, volunteer evaluation, issues</td>
+                    <td>Head of Supervisors</td>
+                    <td>tdSection content, volunteer evaluation, issues</td>
                 </tr>
                 <tr>
                     <td>Head of Supervisors</td>
                     <td>General Coordinator</td>
-                    <td>Daily evaluation of all sections</td>
+                    <td>tdDaily evaluation of all sections</td>
                 </tr>
                 <tr>
                     <td>Media Committee</td>
                     <td>Initiative Leader</td>
-                    <td>Photo and video archive + posts</td>
+                    <td>tdPhoto and video archive + posts</td>
                 </tr>
                 <tr>
                     <td>General Coordinator</td>
                     <td>Initiative Leader</td>
-                    <td>Comprehensive final report</td>
+                    <td>tdComprehensive final report</td>
                 </tr>
             </table>
         </section>
 
-        <!-- Penalties and Sanctions -->
         <section id="penalties" class="content-section">
-            <h2 class="ar-content">🚨 العقوبات والجزاءات</h2>
-            <h2 class="en-content">🚨 Penalties and Sanctions</h2>
+            <h2 class="ar-content">🚨🚨 العقوبات والجزاءات</h2>
+            <h2 class="en-content">🚨🚨 Penalties and Sanctions</h2>
             <table class="regulations-table ar-content">
                 <tr>
                     <th>المخالفة</th>
@@ -937,7 +1058,7 @@
                     <td>تحقيق داخلي + تجميد</td>
                 </tr>
                 <tr>
-                    <td>الغياب يوم التنفيذ بدون عذر</td>
+                    <td>الغياب يوم التنفيذ بدون دون عذر</td>
                     <td>استبعاد نهائي</td>
                 </tr>
                 <tr>
@@ -973,14 +1094,217 @@
             </table>
         </section>
 
-        <!-- Conclusion -->
-        <section id="conclusion" class="content-section">
-            <h2 class="ar-content">🏁 ختامًا</h2>
-            <h2 class="en-content">🏁 Conclusion</h2>
-            <p class="ar-content">هذه المبادرة مش مجرد فعالية يومين… هي نواة لوعي وطني بيتبني، وفريق احترافي بيتشكل، ومجتمع مدرسي بيحترم بعضه.</p>
+        <section id="general-conclusion" class="content-section">
+            <h2 class="ar-content">🏁 ختام اللائحة العامة</h2>
+            <h2 class="en-content">🏁 General Regulations Conclusion</h2>
+            <p class="ar-content">هذه المبادرة مش مجرد فعالية يومين… هي نواة لوعي وطني بيتبنى، وفريق احترافي بيتشكل، ومجتمع مدرسي بيحترم بعضه.</p>
             <p class="en-content">This initiative is not just a two-day event… it is the seed of national awareness being built, a professional team being formed, and a respectful school community.</p>
             <p class="ar-content">فكل عضو إداري فيها مش بس مسؤول عن المهام… لكنه قدوة لطلاب في سن حساس. احترامك للهيكل = احترامك لهدفك.</p>
             <p class="en-content">Every administrative member is not only responsible for tasks but also a role model for students at a sensitive age. Your respect for the structure = your respect for your goal.</p>
+        </section>
+
+        <!-- Volunteers Regulations -->
+        <section id="volunteers-introduction" class="content-section">
+            <h2 class="ar-content">📗 مقدمة لائحة المتطوعين</h2>
+            <h2 class="en-content">📗 Volunteers Regulations Introduction</h2>
+            <p class="ar-content">المتطوع في مبادرة "اعرف بلدك" مش مجرد طالب بيساعد، ده عنصر فاعل في بناء وعي مجتمعي جديد. المبادرة بتعتمد بشكل أساسي على الشباب اللي عنده حماس، التزام، وولاء للفكرة. علشان كده اتعملت اللائحة دي لتنظيم دور كل متطوع وتحقيق أعلى مستوى من الاحتراف.</p>
+            <p class="en-content">The volunteer in the "Know Your Country" initiative is not just a student helping out—they are an active element in building a new societal awareness. The initiative relies heavily on enthusiastic, committed, and loyal youth. Therefore, this regulation was established to organize each volunteer’s role and achieve the highest level of professionalism.</p>
+        </section>
+
+        <section id="volunteer-definition" class="content-section">
+            <h2 class="ar-content">👥 من هو المتطوع؟</h2>
+            <h2 class="en-content">👥 Who is the Volunteer?</h2>
+            <p class="ar-content">هو أي طالب بيشارك بشكل تطوعي في تنفيذ فعاليات المبادرة سواء داخل الأركان، في الدعم الفني، أو في التوثيق والإعلام، تحت إشراف مباشر من مشرفي الأركان أو المنسق العام.</p>
+            <p class="en-content">A volunteer is any student who participates voluntarily in implementing the initiative’s activities, whether in the sections, technical support, or documentation and media, under the direct supervision of section supervisors or the general coordinator.</p>
+        </section>
+
+        <section id="volunteer-rights" class="content-section">
+            <h2 class="ar-content">✅ حقوق المتطوع</h2>
+            <h2 class="en-content">✅ Volunteer Rights</h2>
+            <ul class="regulations-list ar-content">
+                <li>يحصل على تدريب وتأهيل مبدئي قبل الفعالية.</li>
+                <li>يتم توزيعه حسب اهتمامه أو مهاراته إن أمكن.</li>
+                <li>له الحق في بيئة محترمة وآمنة داخل المبادرة.</li>
+                <li>يتم توثيق مشاركته رسميًا بشهادة تقدير عند انتهاء المبادرة.</li>
+                <li>يمكن ترشيحه لأدوار قيادية مستقبلًا حسب الأداء.</li>
+            </ul>
+            <ul class="regulations-list en-content">
+                <li>Receives initial training and preparation before the event.</li>
+                <li>Is assigned based on their interests or skills whenever possible.</li>
+                <li>Has the right to a respectful and safe environment within the initiative.</li>
+                <li>Their participation is officially documented with a certificate of appreciation upon completion.</li>
+                <li>Can be nominated for leadership roles in the future based on performance.</li>
+            </ul>
+        </section>
+
+        <section id="volunteer-duties" class="content-section">
+            <h2 class="ar-content">📌 واجبات المتطوع</h2>
+            <h2 class="en-content">📌 Volunteer Duties</h2>
+            <ul class="regulations-list ar-content">
+                <li>الالتزام الكامل بتعليمات المشرف المباشر وعدم تخطي الرتب.</li>
+                <li>الحضور في الموعد المحدد قبل بداية الفعالية.</li>
+                <li>العمل الجماعي والتعاون مع باقي المتطوعين دون فردية أو تنافس سلبي.</li>
+                <li>المحافظة على النظام داخل الركن أو الساحة.</li>
+                <li>التمثيل المشرف للمبادرة أمام الطلاب والإدارة والزوار.</li>
+                <li>عدم الإدلاء بأي معلومات خاطئة أو رأي شخصي باسم المبادرة.</li>
+                <li>عدم تصوير أو نشر أي محتوى بدون إذن مباشر من مشرف الركن أو اللجنة الإعلامية.</li>
+            </ul>
+            <ul class="regulations-list en-content">
+                <li>Full compliance with the direct supervisor’s instructions and no bypassing of ranks.</li>
+                <li>Arrival at the specified time before the event begins.</li>
+                <li>Teamwork and cooperation with other volunteers without individualism or negative competition.</li>
+                <li>Maintaining order within the section or area.</li>
+                <li>Representing the initiative honorably before students, administration, and visitors.</li>
+                <li>Not providing false information or personal opinions on behalf of the initiative.</li>
+                <li>No recording or publishing content without direct permission from the section supervisor or media committee.</li>
+            </ul>
+        </section>
+
+        <section id="behavioral-regulations" class="content-section">
+            <h2 class="ar-content">🔐 ضوابط سلوكية</h2>
+            <h2 class="en-content">🔐 Behavioral Regulations</h2>
+            <table class="regulations-table ar-content">
+                <tr>
+                    <th>السلوك</th>
+                    <th>الإجراء</th>
+                </tr>
+                <tr>
+                    <td>التحدث بسخرية أو ألفاظ غير لائقة</td>
+                    <td>تحذير شفهي</td>
+                </tr>
+                <tr>
+                    <td>تخطي الأوامر أو تجاهل التعليمات</td>
+                    <td>إنذار رسمي</td>
+                </tr>
+                <tr>
+                    <td>نشر محتوى غير مصرح به</td>
+                    <td>استبعاد مباشر</td>
+                </tr>
+                <tr>
+                    <td>الغياب يوم التنفيذ بدون عذر</td>
+                    <td>حرمان من الشهادة</td>
+                </tr>
+                <tr>
+                    <td>التشاجر أو إثارة الفوضى</td>
+                    <td>فصل</td>
+                </tr>
+            </table>
+            <table class="regulations-table en-content">
+                <tr>
+                    <th>Behavior</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Sarcastic speech or inappropriate language</td>
+                    <td>Verbal warning</td>
+                </tr>
+                <tr>
+                    <td>Bypassing orders or ignoring instructions</td>
+                    <td>Official warning</td>
+                </tr>
+                <tr>
+                    <td>Publishing unauthorized content</td>
+                    <td>Immediate suspension</td>
+                </tr>
+                <tr>
+                    <td>Absence on execution day without excuse</td>
+                    <td>Deprivation of certificate</td>
+                </tr>
+                <tr>
+                    <td>Fighting or causing chaos</td>
+                    <td>Immediate expulsion</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="time-discipline" class="content-section">
+            <h2 class="ar-content">⏱️ الانضباط الزمني</h2>
+            <h2 class="en-content">⏲️ Time Discipline</h2>
+            <ul class="regulations-list ar-content">
+                <li>الحضور قبل بداية اليوم بـ 30 دقيقة على الأقل.</li>
+                <li>يمنع المغادرة دون إذن مشرف الركن.</li>
+                <li>أي تأخير متكرر = استبعاد مؤقت.</li>
+            </ul>
+            <ul class="regulations-list en-content">
+                <li>Arrival at least 30 minutes before the day starts.</li>
+                <li>No leaving without permission from the section supervisor.</li>
+                <li>Repeated tardiness = temporary suspension.</li>
+            </ul>
+        </section>
+
+        <section id="team-etiquette" class="content-section">
+            <h2 class="ar-content">🧭 آداب التعامل</h2>
+            <h2 class="en-content">🧭 Team Etiquette</h2>
+            <ul class="regulations-list ar-content">
+                <li>ممنوع استخدام الألقاب أو أسماء الدلع داخل الفعالية.</li>
+                <li>التحدث بأسلوب راقي ر.</li>
+                <li>احنا مش أصحاب جايين نتمشى، احنا فريق بيشتغل بجد.</li>
+            </ul>
+            <ul class="regulations-list en-content">
+                <li>No use of nicknames or informal titles during the event.</li>
+                <li>Speaking in a refined and respectful manner.</li>
+                <li>We’re not friends here to hang out; we’re a team working hard.</li>
+            </ul>
+        </section>
+
+        <section id="volunteer-evaluation" class="content-section">
+            <h2 class="ar-content">🎯 تقييم المتطوعين</h2>
+            <h2 class="en-content">🎯 Volunteer Evaluation</h2>
+            <table class="regulations-table ar-content">
+                <tr>
+                    <th>البند</th>
+                    <th>الدرجة</th>
+                </tr>
+                <tr>
+                    <td>الالتزام بالحضور والانصراف</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>التعاون مع الفريق والمشرف</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>الأداء داخل الركن أو المهمة</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>السلوك والانضباط العام</td>
+                    <td>20%</td>
+                </tr>
+            </table>
+            <table class="regulations-table en-content">
+                <tr>
+                    <th>Criteria</th>
+                    <th>Weight</th>
+                </tr>
+                <tr>
+                    <td>Attendance and punctuality</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Cooperation with team and supervisor</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Performance in section or task</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>Behavior and general discipline</td>
+                    <td>20%</td>
+                </tr>
+            </table>
+            <p class="ar-content">اللي بيحقق 85% فأكثر بيتم ترشيحه لأدوار أكبر في المبادرات الجاية.</p>
+            <p class="en-content">Those who achieve 85% or higher are nominated for larger roles in future initiatives.</p>
+        </section>
+
+        <section id="volunteers-conclusion" class="content-section">
+            <h2 class="ar-content">🏁 ختام لائحة المتطوعين</h2>
+            <h2 class="en-content">🏁 Volunteers Regulations Conclusion</h2>
+            <p class="ar-content">كونك متطوع في مبادرة وطنية زي "اعرف بلدك" هو شرف ومسؤولية. إنت جزء من حاجة أكبر من مجرد نشاط… إنت بتساهم في بناء وعي جيل كامل!</p>
+            <p class="en-content">Being a volunteer in a national initiative like "Know Your Country" is an honor and a responsibility. You are part of something bigger than just an activity… you are contributing to building the awareness of an entire generation!</p>
+            <p class="ar-content">"اللي بيبدأ بحاجة بإخلاص… بيكمل فيها بطموح."</p>
+            <p class="en-content">"Those who start something with sincerity… continue it with ambition."</p>
         </section>
     </div>
 
